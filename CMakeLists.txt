@@ -16,3 +16,9 @@ target_include_directories(meta INTERFACE include)
 
 # examples
 meta_add_example(source_location)
+
+# test
+add_executable(meta_test
+    test/catch/main.cpp
+    test/source_location.cpp)
+target_link_libraries(meta_test PRIVATE meta)
