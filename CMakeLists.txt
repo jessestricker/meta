@@ -10,15 +10,19 @@ function(meta_add_example name)
 endfunction()
 
 # library
-add_library(meta INTERFACE)
-target_compile_features(meta INTERFACE cxx_std_11)
+add_library(meta
+    source/type_name.cpp)
+target_compile_features(meta PUBLIC cxx_std_11)
 target_include_directories(meta INTERFACE include)
+target_include_directories(meta PRIVATE include/meta)
 
 # examples
 meta_add_example(source_location)
+meta_add_example(type_name)
 
 # test
 add_executable(meta_test
     test/catch/main.cpp
-    test/source_location.cpp)
+    test/source_location.cpp
+    test/type_name.cpp)
 target_link_libraries(meta_test PRIVATE meta)
