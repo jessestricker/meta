@@ -1,5 +1,5 @@
 #include <iostream>
-#include <meta/meta.hpp>
+#include <meta/type_name.hpp>
 
 namespace {
   struct InAnonymousNs {};

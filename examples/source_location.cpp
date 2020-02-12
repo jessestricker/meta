@@ -1,5 +1,5 @@
 #include <iostream>
-#include <meta/meta.hpp>
+#include <meta/source_location.hpp>
 
 void do_log(const meta::SourceLocation& loc, const char* text) {
   std::cout << loc << ": " << text << '\n';

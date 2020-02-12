@@ -1,4 +1,4 @@
-#include <meta/meta.hpp>
+#include <meta/type_name.hpp>
 
 #include "catch/catch.hpp"
 
