@@ -10,12 +10,10 @@ void do_log(const meta::SourceLocation& loc, const char* text) {
 int main() {
   const auto def_src_loc = meta::SourceLocation{};
   std::cout << def_src_loc << '\n';
-  std::wcout << def_src_loc << '\n';
   std::cout << '\n';
 
   const auto src_loc = META_CURRENT_SOURCE_LOCATION;
   std::cout << src_loc << '\n';
-  std::wcout << src_loc << '\n';
   std::cout << '\n';
 
   LOG("example log message");

@@ -12,7 +12,7 @@ endfunction()
 # library
 add_library(meta
     source/type_name.cpp)
-target_compile_features(meta PUBLIC cxx_std_11)
+target_compile_features(meta PUBLIC cxx_std_17)
 target_include_directories(meta INTERFACE include)
 target_include_directories(meta PRIVATE include/meta)
 

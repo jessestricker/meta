@@ -1,8 +1,7 @@
 #include "type_name.hpp"
 
 #ifdef _MSC_VER
-  #include <cstddef>
-  #include <type_traits>
+  #include <string_view>
 #else
   #include <cxxabi.h>
 
@@ -13,19 +12,18 @@ namespace meta {
   std::string detail::demangle_type_name(const char* mangled) {
 #ifdef _MSC_VER
 
-    static const char* keywords[] = {"class ", "enum ", "struct ", "union "};
-    static const std::size_t keyword_lengths[] = {6, 5, 7, 6};
-    static const auto keywords_count = std::extent<decltype(keywords)>::value;
+    static constexpr std::string_view keywords[] = {"class ", "enum ", "struct ", "union "};
 
-    auto str = std::string{mangled};
-    for (auto i = std::size_t{0}; i < keywords_count; ++i) {
-      auto pos = str.find(keywords[i]);
+    auto demangled = std::string{mangled};
+    for (auto&& keyword : keywords) {
+      auto pos = demangled.find(keyword);
       while (pos != std::string::npos) {
-        str.erase(pos, keyword_lengths[i]);
-        pos = str.find(keywords[i], pos);
+        demangled.erase(pos, keyword.size());
+        pos = demangled.find(keyword, pos);
       }
     }
-    return str;
+
+    return demangled;
 
 #else
 
