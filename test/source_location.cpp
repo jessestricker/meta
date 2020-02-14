@@ -6,8 +6,7 @@
 using namespace Catch::Matchers;
 
 namespace {
-  template <class Obj>
-  std::string to_string(const Obj& obj) {
+  std::string from_stream_to_string(const meta::SourceLocation& obj) {
     auto oss = std::ostringstream{};
     oss << obj;
     return oss.str();
@@ -29,13 +28,15 @@ TEST_CASE("SourceLocation: explicit constructor") {
 TEST_CASE("SourceLocation: macro constructor") {
   const auto loc = META_CURRENT_SOURCE_LOCATION;
   REQUIRE_THAT(std::string{loc.file()}, EndsWith("source_location.cpp"));
-  REQUIRE(loc.line() == 30);
+  REQUIRE(loc.line() == 29);
 }
 
-TEST_CASE("SourceLocation: ostream operator") {
+TEST_CASE("SourceLocation: to_string and ostream operator") {
   auto loc = meta::SourceLocation{"test.txt", 12};
-  REQUIRE(to_string(loc) == "test.txt:12");
+  REQUIRE(loc.to_string() == "test.txt:12");
+  REQUIRE(from_stream_to_string(loc) == loc.to_string());
 
   loc = meta::SourceLocation{"", 12};
-  REQUIRE(to_string(loc) == "<unknown>:12");
+  REQUIRE(loc.to_string() == "<unknown>:12");
+  REQUIRE(from_stream_to_string(loc) == loc.to_string());
 }

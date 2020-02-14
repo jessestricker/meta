@@ -11,6 +11,7 @@ endfunction()
 
 # library
 add_library(meta
+    source/source_location.cpp
     source/type_name.cpp)
 target_compile_features(meta PUBLIC cxx_std_17)
 target_include_directories(meta INTERFACE include)
@@ -21,8 +22,7 @@ meta_add_example(source_location)
 meta_add_example(type_name)
 
 # test
-add_executable(meta_test
-    test/catch/main.cpp
+add_executable(meta_test test/catch/main.cpp
     test/source_location.cpp
     test/type_name.cpp)
 target_link_libraries(meta_test PRIVATE meta)

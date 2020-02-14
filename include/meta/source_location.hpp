@@ -2,7 +2,8 @@
 #define META_SOURCE_LOCATION_HPP
 
 #include <cstddef>
-#include <ostream>
+#include <iosfwd>
+#include <string>
 #include <string_view>
 
 namespace meta {
@@ -23,17 +24,14 @@ namespace meta {
       return line_;
     }
 
+    [[nodiscard]] std::string to_string() const;
+
   private:
     std::string_view file_ = "";
     std::size_t line_ = 0;
   };
 
-  std::ostream& operator<<(std::ostream& os, const SourceLocation& loc) {
-    static constexpr auto unknown = std::string_view{"<unknown>"};
-    os << (loc.file().empty() ? unknown : loc.file());
-    os << ':' << loc.line();
-    return os;
-  }
+  std::ostream& operator<<(std::ostream& os, const SourceLocation& loc);
 }
 
 #define META_CURRENT_SOURCE_LOCATION \
