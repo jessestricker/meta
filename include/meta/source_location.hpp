@@ -31,6 +31,32 @@ namespace meta {
     std::size_t line_ = 0;
   };
 
+  constexpr bool operator==(const SourceLocation& lhs, const SourceLocation& rhs) noexcept {
+    return lhs.file() == rhs.file() && lhs.line() == rhs.line();
+  }
+
+  constexpr bool operator<(const SourceLocation& lhs, const SourceLocation& rhs) noexcept {
+    if (lhs.file() < rhs.file()) return true;
+    if (lhs.file() > rhs.file()) return false;
+    return lhs.line() < rhs.line();
+  }
+
+  constexpr bool operator!=(const SourceLocation& lhs, const SourceLocation& rhs) noexcept {
+    return !(rhs == lhs);
+  }
+
+  constexpr bool operator>(const SourceLocation& lhs, const SourceLocation& rhs) noexcept {
+    return rhs < lhs;
+  }
+
+  constexpr bool operator<=(const SourceLocation& lhs, const SourceLocation& rhs) noexcept {
+    return !(rhs < lhs);
+  }
+
+  constexpr bool operator>=(const SourceLocation& lhs, const SourceLocation& rhs) noexcept {
+    return !(lhs < rhs);
+  }
+
   std::ostream& operator<<(std::ostream& os, const SourceLocation& loc);
 }
 
