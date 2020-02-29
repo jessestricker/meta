@@ -4,9 +4,10 @@
 #include <locale>
 #include <ostream>
 #include <regex>
-#include <sstream>
 #include <string_view>
 #include <tuple>
+
+#include "util.hpp"
 
 namespace {
   using namespace std::string_view_literals;
@@ -49,7 +50,7 @@ namespace meta {
   }
 
   std::string Version::to_string() const {
-    auto oss = std::ostringstream{};
+    auto oss = util::make_classic_oss();
     oss << major << '.' << minor << '.' << patch;
     if (!pre_release.empty()) {
       oss << '-' << pre_release;
