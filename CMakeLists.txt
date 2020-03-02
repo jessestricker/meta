@@ -26,5 +26,6 @@ meta_add_example(version)
 # test
 add_executable(meta_test test/catch/main.cpp
     test/source_location.cpp
-    test/type_name.cpp)
+    test/type_name.cpp
+    test/version.cpp)
 target_link_libraries(meta_test PRIVATE meta)
