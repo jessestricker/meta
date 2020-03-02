@@ -7,7 +7,7 @@
 namespace meta::util {
   /// Creates an output string stream, with the classic locale imbued.
   /// \return A new output string stream.
-  auto make_classic_oss() {
+  inline auto make_classic_oss() {
     auto oss = std::ostringstream{};
     oss.imbue(std::locale::classic());
     return oss;
