@@ -14,7 +14,7 @@ add_library(meta
     source/source_location.cpp
     source/type_name.cpp
     source/version.cpp)
-target_compile_features(meta PUBLIC cxx_std_17)
+target_compile_features(meta PUBLIC cxx_std_20)
 target_include_directories(meta INTERFACE include)
 target_include_directories(meta PRIVATE include/meta)
 
